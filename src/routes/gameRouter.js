@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { createGame, getGames } from "../controllers/gamesController.js";
-import checkUniqueNameMiddleware from "../middlewares/checkUniqueNameMiddleware.js";
+import checkUniqueDataMiddleware from "../middlewares/checkUniqueDataMiddleware.js";
 import validateSchemaMiddleware from "../middlewares/validateSchemaMiddleware.js";
 import gameSchema from "../schemas/gameSchema.js";
 
@@ -10,7 +10,7 @@ gameRouter.get("/games", getGames);
 gameRouter.post(
     "/games",
     validateSchemaMiddleware(gameSchema),
-    checkUniqueNameMiddleware("games"),
+    checkUniqueDataMiddleware("games", "name"),
     createGame
 );
 

@@ -12,7 +12,7 @@ async function getGames(req, res) {
                 `,
                 [`${queryValue}%`]
             );
-            res.status(200).send(result.rows);
+            return res.status(200).send(result.rows);
         }
 
         const result = await connection.query(

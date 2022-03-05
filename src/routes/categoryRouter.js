@@ -3,7 +3,7 @@ import {
     getCategories,
     createCategory,
 } from "../controllers/categoriesController.js";
-import checkUniqueNameMiddleware from "../middlewares/checkUniqueNameMiddleware.js";
+import checkUniqueDataMiddleware from "../middlewares/checkUniqueDataMiddleware.js";
 import validateSchemaMiddleware from "../middlewares/validateSchemaMiddleware.js";
 import categorySchema from "../schemas/categorySchema.js";
 
@@ -13,7 +13,7 @@ categoryRouter.get("/categories", getCategories);
 categoryRouter.post(
     "/categories",
     validateSchemaMiddleware(categorySchema),
-    checkUniqueNameMiddleware("categories"),
+    checkUniqueDataMiddleware("categories", "name"),
     createCategory
 );
 
