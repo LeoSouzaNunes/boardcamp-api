@@ -12,13 +12,16 @@ import customerSchema from "../schemas/customerSchema.js";
 const customerRouter = Router();
 
 customerRouter.get("/customers", getCustomers);
+
 customerRouter.get("/customers/:id", getCustomer);
+
 customerRouter.post(
     "/customers",
     validateSchemaMiddleware(customerSchema),
     checkUniqueDataMiddleware("customers", "cpf"),
     createCustomer
 );
+
 customerRouter.put(
     "/customers/:id",
     validateSchemaMiddleware(customerSchema),
