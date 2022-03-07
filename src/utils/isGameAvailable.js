@@ -13,11 +13,10 @@ export default async function isGameAvailable(gameId) {
         const rentalsNumber = await connection.query(
             `
             SELECT * FROM rentals
-                WHERE "gameId"=$1
+                WHERE "returnDate" IS NULL AND "gameId"=$1
         `,
             [gameId]
         );
-
         if (rentalsNumber.rowCount >= gamesInStock.rows[0].stockTotal) {
             return false;
         }
